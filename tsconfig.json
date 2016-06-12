@@ -26,8 +26,6 @@
   "files": [
     "src/app/app.component.ts",
     "src/app/app.ts",
-    "src/app/classes/Model.ts",
-    "src/app/classes/ViewModel.ts",
     "src/app/todo/todo.component.ts",
     "src/app/todo/todo.model.ts",
     "src/app/todo/todo.service.ts",
