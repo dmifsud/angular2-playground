@@ -1,4 +1,4 @@
-import {TodoModel} from './todo.model';
+import {TodoModel, TodoViewModel} from './todo.model';
 
 export class TodoService {
 
@@ -6,16 +6,22 @@ export class TodoService {
 
   constructor() {
 
-    this._list.push(new TodoModel(1, 'CI fixes', false));
-    this._list.push(new TodoModel(2, 'AI fixes', false));
+    this._list.push(new TodoModel(1, 'Learn Angular 2', false));
+    this._list.push(new TodoModel(2, 'Setup a cool application', false));
+    this._list.push(new TodoModel(3, 'Test the cool application', false));
 
 
   }
 
-
-    get List() : Array<TodoModel>
-    {
-        return this._list;
+    addNewItem(itemName: string) {
+      this._list.push(new TodoModel(new Date().getTime(), itemName, false));
     }
-  
+
+
+    getViewModelList() : Promise<Array<TodoViewModel>> {
+      return new Promise((resolve, reject) => {
+        resolve(this._list);
+      });
+    }
+
 }
