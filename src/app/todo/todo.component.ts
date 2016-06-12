@@ -15,6 +15,13 @@ import { TodoViewModel } from './todo.model';
         <button (click)='toggleItem(item)' type='submit'>{{ item.isEditing ? 'Update' : 'Edit' }}</button>
         <button (click)='done(item)'>{{ item.isDone ? 'Cancel' : 'Done' }}</button>
       </form>
+
+      <div>
+        <!-- <button (click)="showAdd()">Add</button> -->
+        <form (submit)="addNewItem(aNewItem)">
+          <input type='text' [(ngModel)]='aNewItem'/>
+        </form>
+      </div>
     </div>
   `,
   styles: [
@@ -54,6 +61,12 @@ export class TodoComponent{
   done(item: TodoViewModel) : void {
     console.log(item);
     item.isDone = !item.isDone;
+  }
+
+  addNewItem(item) {
+    this.todoService.addNewItem(item);
+    //I know it's a hack. Give me a break :)
+    this["aNewItem"] = "";
   }
 
   toggleItem(item : TodoViewModel) : void {

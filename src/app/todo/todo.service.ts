@@ -13,6 +13,10 @@ export class TodoService {
 
   }
 
+    addNewItem(itemName: string) {
+      this._list.push(new TodoModel(new Date().getTime(), itemName, false));
+    }
+
 
     getViewModelList() : Promise<Array<TodoViewModel>> {
       return new Promise((resolve, reject) => {
