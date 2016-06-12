@@ -1,4 +1,5 @@
-export class TodoModel {
+
+export class TodoModel{
   id: Number;
   name: string;
   isDone: boolean;
@@ -8,4 +9,8 @@ export class TodoModel {
     this.name = name;
     this.isDone = isDone;
   }
+}
+
+export class TodoViewModel extends TodoModel {
+  isEditing : boolean = false;
 }

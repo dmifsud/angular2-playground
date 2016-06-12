@@ -1,33 +1,62 @@
 import { Component } from '@angular/core';
 import { TodoService } from './todo.service';
-import { TodoViewModel } from './todo.viewmodel';
+import {NgClass} from '@angular/common';
+import { TodoViewModel } from './todo.model';
 
 @Component({
   selector: 'todo',
   template: `
     <div>
-      <div *ngFor='let item of myList'>
-        <span [hidden]='item.isHidden===true'><input type='text' [(ngModel)]='item.name'/></span>
-        <span [hidden]='item.isHidden===false'>{{item.name}}</span>
-        <button (click)='toggleItem(item)'>{{ item.isHidden ? 'Edit' : 'Update' }}</button>
-      </div>
+      <form *ngFor='let item of myList' class='todo-item' [ngClass]='{done: item.isDone }'>
+        <div class='row'>
+          <span [hidden]='!item.isEditing'><input type='text' [(ngModel)]='item.name'/></span>
+          <span class='field' [hidden]='!!item.isEditing'>{{item.name}}</span>
+        </div>
+        <button (click)='toggleItem(item)' type='submit'>{{ item.isEditing ? 'Update' : 'Edit' }}</button>
+        <button (click)='done(item)'>{{ item.isDone ? 'Cancel' : 'Done' }}</button>
+      </form>
     </div>
   `,
+  styles: [
+    `
+      .todo-item{
+        padding:10px;
+      }
+
+      .row{
+        display:inline-block;
+        width: 200px;
+      }
+
+      .todo-item.done .field{
+        text-decoration: line-through;
+      }
+
+
+    `
+  ],
+  directives: [NgClass],
   providers: [
     TodoService
   ]
 })
 export class TodoComponent{
 
-  myList = Array(TodoViewModel);
+  myList: TodoViewModel[];
 
   constructor(public todoService : TodoService) {
-    //TODO: cast this to TodoViewModel list
-    this.myList = todoService.List;
+    todoService.getViewModelList()
+      .then((list) => {
+        this.myList = list;
+      });
+  }
+
+  done(item: TodoViewModel) : void {
+    console.log(item);
+    item.isDone = !item.isDone;
   }
 
   toggleItem(item : TodoViewModel) : void {
-    console.log(item);
-    item.isHidden = !item.isHidden;
+    item.isEditing = !item.isEditing;
   }
 }
