@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -24,11 +24,12 @@
   },
   "compileOnSave": false,
   "files": [
+    "src/app/app.component.spec.ts",
     "src/app/app.component.ts",
     "src/app/app.ts",
     "src/app/todo/todo.component.ts",
     "src/app/todo/todo.model.ts",
     "src/app/todo/todo.service.ts",
-    "src/app/todo/todo.viewmodel.ts"
+    "typings/index.d.ts"
   ]
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TodoService } from './todo.service';
 import {NgClass} from '@angular/common';
-import { TodoViewModel } from './todo.model';
+import { TodoModel, TodoViewModel, TodoViewModelFactory } from './todo.model';
 
 @Component({
   selector: 'todo',
@@ -18,8 +18,8 @@ import { TodoViewModel } from './todo.model';
 
       <div>
         <!-- <button (click)="showAdd()">Add</button> -->
-        <form (submit)="addNewItem(aNewItem)">
-          <input type='text' [(ngModel)]='aNewItem'/>
+        <form (submit)="addCurrentItem()">
+          <input type='text' [(ngModel)]='addingItem.name'/>
         </form>
       </div>
     </div>
@@ -49,24 +49,32 @@ import { TodoViewModel } from './todo.model';
 })
 export class TodoComponent{
 
-  myList: TodoViewModel[];
+  private myList: Array<TodoViewModel>;
+  private addingItem : TodoViewModel = null;
 
   constructor(public todoService : TodoService) {
-    todoService.getViewModelList()
+    todoService.getItems()
       .then((list) => {
-        this.myList = list;
-      });
+        this.myList = TodoViewModelFactory.MakeList(list);
+    });
+
+    this.addingItem = new TodoViewModel();
   }
 
   done(item: TodoViewModel) : void {
-    console.log(item);
     item.isDone = !item.isDone;
   }
 
-  addNewItem(item) {
-    this.todoService.addNewItem(item);
-    //I know it's a hack. Give me a break :)
-    this["aNewItem"] = "";
+ addCurrentItem(){
+   this.addItem(this.addingItem);
+   this.addingItem = new TodoViewModel(); //Reset
+ }
+
+  addItem(item : TodoViewModel) {
+    this.todoService.addItem(item.name).then(successResp => { //TODO: Ideally, we pass the whole model to the service.
+      this.myList.push(item);
+    })
+
   }
 
   toggleItem(item : TodoViewModel) : void {
