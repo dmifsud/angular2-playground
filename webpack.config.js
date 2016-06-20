@@ -75,6 +75,10 @@ module.exports = {
         loader: 'ts-loader',
         exclude: [/\.(spec|e2e)\.ts$/]
       },
+      {
+        test: /\.html$/,
+        loader: 'raw'
+      }
     ]
   },
 
