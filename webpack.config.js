@@ -16,6 +16,7 @@ module.exports = {
       app: './app/app.ts',
       vendor: [
         // 'core-js', //polyfills
+        'rxjs',
         'zone.js',
         'reflect-metadata'
       ]
@@ -63,7 +64,7 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'tslint',
-        exclude: [/\.(spec|e2e)\.ts$/]
+        exclude: [/\.(node_modules|spec|e2e)\.ts$/]
       }
 
     ],

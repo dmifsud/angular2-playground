@@ -7,6 +7,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "removeComments": false,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
     "noImplicitAny": false,
     "outDir": "build"
   },
@@ -25,13 +29,8 @@
   },
   "compileOnSave": false,
   "files": [
-    "src/app/app.component.spec.ts",
-    "src/app/app.component.ts",
+    "src/app/app.module.ts",
     "src/app/app.ts",
-    "src/app/badIdeasComponent/badIdeas.component.ts",
-    "src/app/todo/todo.component.ts",
-    "src/app/todo/todo.model.ts",
-    "src/app/todo/todo.service.ts",
     "typings/index.d.ts"
   ]
 }
