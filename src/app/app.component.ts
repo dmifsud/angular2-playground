@@ -1,18 +1,16 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
+
 
 @Component({
-    selector: "my-app",
-    template: `
-        <h1>Angular 2 Playground</h1>
-        <p>{{author}}</p>
-    `
+    selector: 'my-app',
+    template: require('./app.template.html')
 })
 export class AppComponent {
 
   author: string;
 
   constructor() {
-    this.author = "David Mifsud";
+    this.author = 'David Mifsud';
   }
 
 }

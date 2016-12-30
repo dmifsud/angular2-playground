@@ -29,8 +29,14 @@
   },
   "compileOnSave": false,
   "files": [
+    "src/app/app.component.ts",
     "src/app/app.module.ts",
     "src/app/app.ts",
+    "src/app/common/app.commmon.module.ts",
+    "src/app/common/uList/uList.ts",
+    "src/app/todo/index.ts",
+    "src/app/todo/todo.component.ts",
+    "src/app/todo/todo.module.ts",
     "typings/index.d.ts"
   ]
 }

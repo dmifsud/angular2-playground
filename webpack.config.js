@@ -1,19 +1,11 @@
-const webpackMerge = require('webpack-merge');
-
-var path = require('path');
-
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
-function root(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return path.join.apply(path, [__dirname].concat(args));
-}
 
 module.exports = {
   debug: true,
   context: __dirname + '/src',
   entry: {
       app: './app/app.ts',
+      sass: './app/index.scss',
       vendor: [
         // 'core-js', //polyfills
         'rxjs',
@@ -29,34 +21,12 @@ module.exports = {
 
   devServer: {
     port: 5000,
-    contentBase: __dirname + '/build',
-    // historyApiFallback: true,
-    // stats: 'minimal',
-    // watchOptions: {
-    //   aggregateTimeout: 300,
-    //   poll: 1000
-    // },
-    //outputPath: __dirname + '/build'
+    contentBase: __dirname + '/build'
   },
 
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
     extensions: ['', '.ts', '.js', '.json', '.css', '.scss', '.html'],
-
-    //moduleDirectories: ['node_modules'],
-
-    root: root(),
-
-
-    // alias: {
-    //   'angular2/core': 'node_modules/@angular/core/index.js',
-    //   'angular2/platform/browser': 'node_modules/@angular/platform-browser/index.js',
-    //   'angular2/testing': 'node_modules/@angular/testing/index.js',
-    //   'angular2/router': 'node_modules/@angular/router-deprecated/index.js',
-    //   'angular2/http': 'node_modules/@angular/http/index.js',
-    //   'angular2/http/testing': 'node_modules/@angular/http/testing.js'
-    // }
-
   },
   module: {
     preLoaders: [
@@ -71,15 +41,35 @@ module.exports = {
 
     loaders: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-      {
-        test: /\.ts$/,
-        loader: 'ts-loader',
-        exclude: [/\.(spec|e2e)\.ts$/]
-      },
-      {
-        test: /\.html$/,
-        loader: 'raw'
-      }
+          {
+            test: /\.ts$/,
+            loader: 'ts-loader',
+            exclude: [/\.(spec|e2e)\.ts$/]
+          },
+          {
+            test: /\.template.html$/,
+            loader: 'html'
+          },
+          {
+            test: /\.scss$/,
+            loaders: ['style', 'css', 'sass']
+          },
+          {
+            test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+            loader: "url?limit=10000&minetype=application/font-woff"
+          }, {
+            test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+            loader: "url?limit=10000&minetype=application/font-woff"
+          }, {
+            test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+            loader: "url?limit=10000&minetype=application/octet-stream"
+          }, {
+            test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+            loader: "file"
+          }, {
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            loader: "url?limit=10000&minetype=image/svg+xml"
+          }
     ]
   },
 

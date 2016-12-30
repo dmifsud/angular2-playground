@@ -1,0 +1,38 @@
+<md-sidenav-container>
+    <md-sidenav #sidenav>
+        sidenav content
+    </md-sidenav>
+    <md-toolbar>
+        <md-toolbar-row>
+            <button md-button (click)='sidenav.open()'>
+              &#8801;
+            </button>
+            <h1>Angular 2 Playground</h1>
+        </md-toolbar-row>
+    </md-toolbar>
+    <md-grid-list cols='2'>
+        <md-grid-tile>
+            <todo></todo>
+        </md-grid-tile>
+        <md-grid-tile>
+            <todo [showButton]='true'></todo>
+        </md-grid-tile>
+        <!-- <md-grid-tile>
+                <button md-button>FLAT</button>
+                <button md-raised-button md-tooltip="This is a tooltip!">RAISED</button>
+                <button md-raised-button color="primary">PRIMARY RAISED</button>
+                <button md-raised-button color="accent">ACCENT RAISED</button>
+        </md-grid-tile>
+        <md-grid-tile>
+            <md-checkbox>Unchecked</md-checkbox>
+            <md-checkbox [checked]="true">Checked</md-checkbox>
+            <md-checkbox [indeterminate]="true">Indeterminate</md-checkbox>
+            <md-checkbox [disabled]="true">Disabled</md-checkbox>
+        </md-grid-tile>
+        <md-grid-tile>
+            <md-radio-button name="symbol">Alpha</md-radio-button>
+            <md-radio-button name="symbol">Beta</md-radio-button>
+            <md-radio-button name="symbol" disabled>Gamma</md-radio-button>
+        </md-grid-tile> -->
+    </md-grid-list>
+</md-sidenav-container>

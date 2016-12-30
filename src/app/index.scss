@@ -1,0 +1,14 @@
+// @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
+// @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import '~@angular/material/core/theming/all-theme';
+@include md-core();
+$primary: md-palette($md-orange, 800);
+$accent:  md-palette($md-light-blue, 600, A100, A400);
+$warn:    md-palette($md-red, 600);
+$theme: md-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+// @import '~@angular/material/core/core';
+// @import '~@angular/material/core/theming/prebuilt/pink-bluegrey.scss';
+// @import '~@angular/material/core/theming/all-theme';
+// @import '~@angular/material/checkbox/checkbox';
+// @import '~@angular/material/radio/radio';
